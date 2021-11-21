@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://get.mocaccino.org/sitemap.xml
