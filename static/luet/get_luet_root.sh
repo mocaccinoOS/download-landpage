@@ -40,7 +40,7 @@ EOF
 ./luet install -y repository/luet repository/mocaccino-repository-index
 
 # We don't have arch specific packages (yet)
-if [ "${LUET_ARCH}" == "amd64" ]; then
+if [ "${LUET_ARCH}" = "amd64" ]; then
   ./luet install -y system/luet
 fi
 
