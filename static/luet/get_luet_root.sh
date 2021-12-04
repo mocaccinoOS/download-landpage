@@ -42,7 +42,10 @@ EOF
 # We don't have arch specific packages (yet)
 if [ "${LUET_ARCH}" = "amd64" ]; then
   ./luet install -y system/luet
+  rm -rf luet
+else
+  cp -rf luet /usr/bin/luet
 fi
 
-rm -rf luet
+
 
