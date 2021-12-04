@@ -12,8 +12,9 @@ LUET_ROOTFS=${LUET_ROOTFS:-/}
 LUET_DATABASE_PATH=${LUET_DATABASE_PATH:-/var/luet/db}
 LUET_DATABASE_ENGINE=${LUET_DATABASE_ENGINE:-boltdb}
 LUET_CONFIG_PROTECT=${LUET_CONFIG_PROTECT:-1}
+LUET_ARCH=${LUET_ARCH:-amd64}
 
-curl -L https://github.com/mudler/luet/releases/download/${LUET_VERSION}/luet-${LUET_VERSION}-linux-amd64 --output luet
+curl -L https://github.com/mudler/luet/releases/download/${LUET_VERSION}/luet-${LUET_VERSION}-linux-${LUET_ARCH} --output luet
 chmod +x luet
 
 mkdir -p /etc/luet/repos.conf.d || true
@@ -37,7 +38,11 @@ system:
 EOF
 
 ./luet install -y repository/luet repository/mocaccino-repository-index
-./luet install -y system/luet
+
+# We don't have arch specific packages (yet)
+if [ "${LUET_ARCH}" == "amd64" ]; then
+  ./luet install -y system/luet
+fi
 
 rm -rf luet
 
