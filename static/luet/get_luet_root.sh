@@ -58,11 +58,10 @@ case $LUET_ARCH in
     arm64|aarch64|arm*)
        ./luet install -y system/luet-arm
        ;;
-    *)
-       cp -rf luet /usr/bin/luet
-       ;;
 esac
-    
+
+if [ ! -e "/usr/bin/luet" ]; then
+  cp -rf luet /usr/bin/luet
+fi
+
 rm -rf luet
-
-
